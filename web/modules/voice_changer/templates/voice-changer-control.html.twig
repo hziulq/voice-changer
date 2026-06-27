@@ -1,0 +1,128 @@
+{#
+/**
+ * @file
+ * Template for the Voice Changer control panel.
+ *
+ * Variables:
+ * - api_base: Python backend base URL.
+ */
+#}
+<div class="voice-changer-panel" id="voice-changer-panel">
+
+  {# Status indicator #}
+  <div class="vc-status-bar">
+    <span class="vc-indicator" id="vc-indicator"></span>
+    <span class="vc-status-label" id="vc-status-label">{{ 'Connecting...'|t }}</span>
+  </div>
+
+  {# Error banners #}
+  <div class="vc-banner vc-banner--error" id="vc-banner-offline" hidden>
+    <strong>{{ 'Python backend is not running.'|t }}</strong>
+    {{ 'Start it with start.bat (Windows) or start.sh (Linux/Mac).'|t }}
+  </div>
+
+  <div class="vc-banner vc-banner--warning" id="vc-banner-vbcable" hidden>
+    <strong>{{ 'VB-Cable not detected.'|t }}</strong>
+    {{ 'Download VB-Cable from'|t }}
+    <a href="https://vb-audio.com/Cable/" target="_blank" rel="noopener">vb-audio.com/Cable</a>
+    {{ 'and install it. Then in Discord: Settings → Voice → Input Device → CABLE Output.'|t }}
+  </div>
+
+  {# Start / Stop pipeline #}
+  <section class="vc-section vc-section--start">
+    <button class="vc-btn vc-btn--start" id="vc-start">{{ 'Start Voice Changer'|t }}</button>
+    <button class="vc-btn vc-btn--stop" id="vc-stop" hidden>{{ 'Stop'|t }}</button>
+  </section>
+
+  {# Quality Mode #}
+  <section class="vc-section">
+    <h3>{{ 'Quality Mode'|t }}</h3>
+    <div class="vc-button-group" id="vc-quality-mode">
+      <button class="vc-btn vc-btn--mode" data-mode="A">{{ 'A — Natural'|t }}</button>
+      <button class="vc-btn vc-btn--mode active" data-mode="B">{{ 'B — Low Latency'|t }}</button>
+      <button class="vc-btn vc-btn--mode" data-mode="C">{{ 'C — Balanced'|t }}</button>
+    </div>
+    <div class="vc-mode-params">
+      <label>{{ 'Pitch (semitones)'|t }}
+        <input type="range" class="vc-mode-param" id="vc-param-pitch" data-param="pitch_shift_semitones" min="-12" max="12" step="1" value="10" />
+        <span class="vc-param-value" id="vc-param-pitch-val">10</span>
+      </label>
+      <label>{{ 'Formant Scale'|t }}
+        <input type="range" class="vc-mode-param" id="vc-param-formant" data-param="formant_scale" min="1.0" max="1.8" step="0.05" value="1.3" />
+        <span class="vc-param-value" id="vc-param-formant-val">1.3</span>
+      </label>
+    </div>
+  </section>
+
+  {# Output Mode #}
+  <section class="vc-section">
+    <h3>{{ 'Output Mode'|t }}</h3>
+    <div class="vc-button-group" id="vc-output-mode">
+      <button class="vc-btn vc-btn--output" data-mode="test">{{ 'Test (Headphones)'|t }}</button>
+      <button class="vc-btn vc-btn--output" data-mode="call">{{ 'Call (VB-Cable)'|t }}</button>
+    </div>
+  </section>
+
+  {# Passthrough #}
+  <section class="vc-section">
+    <button class="vc-btn vc-btn--passthrough" id="vc-passthrough">{{ 'Passthrough OFF'|t }}</button>
+  </section>
+
+  {# Effects #}
+  <section class="vc-section">
+    <h3>{{ 'Effects'|t }}</h3>
+
+    <div class="vc-effect" data-effect="noise_gate">
+      <label>
+        <input type="checkbox" class="vc-effect-toggle" />
+        {{ 'Noise Gate'|t }}
+      </label>
+      <label>{{ 'Threshold (dB)'|t }}
+        <input type="range" class="vc-effect-param" data-param="threshold_db" min="-60" max="0" step="1" value="-40" />
+        <span class="vc-param-value">-40</span>
+      </label>
+    </div>
+
+    <div class="vc-effect" data-effect="reverb">
+      <label>
+        <input type="checkbox" class="vc-effect-toggle" />
+        {{ 'Reverb'|t }}
+      </label>
+      <label>{{ 'Room Size'|t }}
+        <input type="range" class="vc-effect-param" data-param="room_size" min="0" max="1" step="0.05" value="0.3" />
+        <span class="vc-param-value">0.3</span>
+      </label>
+    </div>
+
+    <div class="vc-effect" data-effect="robot_voice">
+      <label>
+        <input type="checkbox" class="vc-effect-toggle" />
+        {{ 'Robot Voice'|t }}
+      </label>
+    </div>
+  </section>
+
+  {# Presets #}
+  <section class="vc-section">
+    <h3>{{ 'Presets'|t }}</h3>
+    <select id="vc-preset-select">
+      <option value="default">default</option>
+      <option value="female_voice">female_voice</option>
+      <option value="robot">robot</option>
+    </select>
+    <button class="vc-btn" id="vc-preset-load">{{ 'Load'|t }}</button>
+    <input type="text" id="vc-preset-name" placeholder="{{ 'Preset name'|t }}" />
+    <button class="vc-btn" id="vc-preset-save">{{ 'Save'|t }}</button>
+    <button class="vc-btn" id="vc-preset-export">{{ 'Export'|t }}</button>
+    <input type="file" id="vc-preset-import-file" accept=".yaml" style="display:none" />
+    <button class="vc-btn" id="vc-preset-import">{{ 'Import'|t }}</button>
+  </section>
+
+  {# Level meter #}
+  <section class="vc-section">
+    <div class="vc-level-meter">
+      <div class="vc-level-bar" id="vc-level-bar"></div>
+    </div>
+  </section>
+
+</div>

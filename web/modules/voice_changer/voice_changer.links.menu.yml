@@ -1,0 +1,12 @@
+voice_changer.panel:
+  title: 'Voice Changer'
+  route_name: voice_changer.panel
+  menu_name: main
+  weight: 50
+
+voice_changer.settings:
+  title: 'Voice Changer'
+  route_name: voice_changer.settings
+  parent: system.admin_config_media
+  description: 'Configure the Python backend URL for the voice changer.'
+  weight: 10

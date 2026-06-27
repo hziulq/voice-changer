@@ -1,0 +1,10 @@
+voice_changer:
+  version: 1.0.0
+  js:
+    js/voice-changer.js: {}
+  css:
+    theme:
+      css/voice-changer.css: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings

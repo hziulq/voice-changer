@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Voice Changer module hooks.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function voice_changer_theme($existing, $type, $theme, $path) {
+  return [
+    'voice_changer_control' => [
+      'variables' => [
+        'api_base' => 'http://localhost:8000',
+      ],
+      'template' => 'voice-changer-control',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function voice_changer_page_attachments(array &$attachments) {
+  $route_match = \Drupal::routeMatch();
+  if ($route_match->getRouteName() === 'voice_changer.panel') {
+    $api_base = \Drupal::state()->get('voice_changer.api_base', 'http://localhost:8000');
+    $attachments['#attached']['library'][] = 'voice_changer/voice_changer';
+    $attachments['#attached']['drupalSettings']['voiceChanger']['apiBase'] = $api_base;
+  }
+}

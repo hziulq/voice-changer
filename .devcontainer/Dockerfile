@@ -8,5 +8,7 @@ RUN apt update -y && apt install -y htop
 
 # Every new shell will open inside the built container
 
-# On top of this build, we install `zsh`, `git` and `docker` as additional
-# Docker layers.
+# Docker CLI + daemon (dockerd) are provided by the `docker-in-docker`
+# devcontainer feature configured in devcontainer.json, so that the
+# `docker` / `docker compose` commands used by setup.sh resolve correctly
+# inside the devcontainer.

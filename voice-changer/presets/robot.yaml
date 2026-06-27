@@ -1,0 +1,12 @@
+quality_mode: B
+pitch_semitones: 10
+formant_scale: 1.0
+effects:
+  noise_gate:
+    enabled: false
+    threshold_db: -40
+  reverb:
+    enabled: true
+    room_size: 0.2
+  robot_voice:
+    enabled: true

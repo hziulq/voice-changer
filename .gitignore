@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment
+.env
+.env.*
+
+# Node / JS
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+
+# Logs
+*.log
+
+# Docker
+*.override.yml
+
+# Drupal — credentials and generated/uploaded content
+web/sites/default/settings.php
+web/sites/default/settings.local.php
+web/sites/default/files/
+
+# Database — raw data files and dumps (never commit DB data)
+mysql/data/
+mysql/dump/*.sql
+
+# spec-kit / .specify auto-generated caches
+**/.specify/integrations/.cache/

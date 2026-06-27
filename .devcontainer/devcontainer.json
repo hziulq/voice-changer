@@ -2,5 +2,13 @@
   "name": "Devcontainer",
   "build": {
     "dockerfile": "./Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "portsAttributes": {
+    "8080": {
+      "onAutoForward": "ignore"
+    }
   }
 }

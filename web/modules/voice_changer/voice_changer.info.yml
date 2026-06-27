@@ -1,0 +1,5 @@
+name: Voice Changer
+type: module
+description: Real-time voice changer control panel powered by Python audio engine.
+core_version_requirement: ^10 || ^11
+package: Custom

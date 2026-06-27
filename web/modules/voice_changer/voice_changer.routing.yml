@@ -1,0 +1,15 @@
+voice_changer.panel:
+  path: '/voice-changer'
+  defaults:
+    _controller: '\Drupal\voice_changer\Controller\VoiceChangerController::panel'
+    _title: 'Voice Changer'
+  requirements:
+    _permission: 'access content'
+
+voice_changer.settings:
+  path: '/admin/config/voice-changer'
+  defaults:
+    _form: '\Drupal\voice_changer\Form\VoiceChangerSettingsForm'
+    _title: 'Voice Changer Settings'
+  requirements:
+    _permission: 'administer site configuration'
