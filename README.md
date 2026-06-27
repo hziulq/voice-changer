@@ -1,7 +1,4 @@
-# drupal on codesandbox
-環境構築用のデモレポジトリ
+# voice changer
 
-レポジトリをフォークしてzshで以下コマンドを実行で動きます。
-```sh
-./setup.sh
-```
+余っていたトークンを実験としてつぎ込んだアプリ。
+面白そうだからdrupalを使っている。
